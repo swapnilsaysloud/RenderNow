@@ -6,7 +6,7 @@ Prerendering involves using a headless browser on the server to load, execute Ja
 
 ![Dynamic Rendering Explainer](assets/Dynamic-Rendering-Explainer.png)
 
-We determine if the request is from a crawler by inspecting the User-Agent header. 
+We determine if the request is from a crawler by inspecting the User-Agent header. [This is when we'll use this product as a middleware]
 - **If the request is from a crawler**:
 instruct Render-Now to prerender the current page and return the server-side rendered HTML.
 
@@ -34,9 +34,6 @@ we simply return index.html, allowing the JavaScript files to handle client-side
 |------------|--------------------------|---------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------|
 | QueryString | `url`                    | N/A           | Yes      | The URL to pre-render.                                                                                                                     |
 | Body       | N/A                       | N/A           | No       |  skip the initial page load of the URL and use the content of the body to render the page. Should be of type `text/html`.      |
-| HTTP Header | `wait-until` | `load`        | No       | Specifies which Chrome event to wait for before returning the HTML. Possible values: `load`, `domcontentloaded`, `networkidle0`, `networkidle2`. |
-| HTTP Header | `timeout`    | `10000`       | No       | Timeout in milliseconds for Chrome to load the page.                                                                                       |
-| HTTP Header | `abort-request` | N/A         | No       | A RegExp that aborts all requests matching it. Useful for skipping requests to CSS/Images files not needed for pre-rendering.              |
 | HTTP Header | `block-ads`  | `false`       | No       | `true/false` to skip Ads/Trackers domains, improving performance and avoiding unnecessary tracking.           |
 
 # Why Render-Now?
